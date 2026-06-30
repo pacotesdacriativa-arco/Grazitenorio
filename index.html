@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grazi Tenório Studio</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#050505;color:#fff}
+.pagina{display:none;min-height:100vh;padding:28px 18px}
+.ativa{display:block}
+.container{max-width:520px;margin:auto}
+h1,h2{font-family:Georgia,serif;color:#d6b15c;text-align:center}
+h1{font-size:42px;margin-top:35px}
+h2{font-size:28px;margin-bottom:20px}
+.sub{text-align:center;color:#ddd;margin:10px 0;line-height:1.5}
+.card{background:#111;border:1px solid #3a2d13;border-radius:24px;padding:22px;margin:18px 0;box-shadow:0 0 25px rgba(214,177,92,.08)}
+.btn{width:100%;display:block;text-align:center;margin-top:16px;padding:16px;border-radius:30px;border:none;background:linear-gradient(135deg,#d6b15c,#ffe29a);color:#000;font-weight:bold;text-decoration:none;font-size:16px;cursor:pointer}
+.btn2{background:transparent;color:#d6b15c;border:1px solid #d6b15c}
+.servicos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.servico{background:#111;border:1px solid #333;border-radius:18px;padding:16px;text-align:center;cursor:pointer}
+.servico.ativo{border-color:#d6b15c;background:#1b160b}
+.servico strong{color:#d6b15c;display:block;margin-bottom:6px}
+input,select,textarea{width:100%;padding:14px;margin-top:8px;margin-bottom:14px;border-radius:14px;border:1px solid #333;background:#050505;color:#fff}
+label{color:#d6b15c;font-size:14px}
+textarea{height:85px;resize:none}
+.progresso{display:flex;justify-content:center;gap:8px;margin:20px 0}
+.bola{width:32px;height:32px;border-radius:50%;border:1px solid #d6b15c;display:flex;align-items:center;justify-content:center;color:#d6b15c}
+.bola.on{background:#d6b15c;color:#000}
+.check{width:120px;height:120px;border-radius:50%;border:2px solid #d6b15c;margin:40px auto 20px;display:flex;align-items:center;justify-content:center;font-size:58px;color:#d6b15c}
+.info{text-align:center;color:#aaa;font-size:13px;margin-top:15px;line-height:1.5}
+footer{text-align:center;color:#777;padding:25px;font-size:13px}
+</style>
+</head>
+
+<body>
+
+<section id="pagina1" class="pagina ativa">
+  <div class="container">
+    <h1>Grazi Tenório</h1>
+    <p class="sub">Studio de Beleza</p>
+    <p class="sub">Realce sua beleza com profissionalismo, cuidado e excelência.</p>
+
+    <div class="card">
+      <p class="sub">✨ Especialista em cabelos</p>
+      <p class="sub">Alisamento • Luzes • Cortes • Escova • Hidratação</p>
+      <p class="sub">Atendimento com horário solicitado pelo WhatsApp.</p>
+
+      <button class="btn" onclick="irPagina(2)">Agendar agora</button>
+
+      <a class="btn btn2" href="https://wa.me/5511970472056" target="_blank">
+        Falar no WhatsApp
+      </a>
+
+      <a class="btn btn2" href="https://www.instagram.com/studiograzitenorio_?igsh=MTIwcGZyNXJsNDQyaA==" target="_blank">
+        Instagram
+      </a>
+    </div>
+
+    <p class="info">Seu horário será confirmado após verificarmos a disponibilidade da agenda.</p>
+  </div>
+</section>
+
+<section id="pagina2" class="pagina">
+  <div class="container">
+
+    <div class="progresso">
+      <div class="bola on">1</div>
+      <div class="bola on">2</div>
+      <div class="bola">3</div>
+    </div>
+
+    <h2>Escolha o serviço</h2>
+
+    <div class="servicos">
+      <div class="servico" onclick="selecionarServico(this,'Alisamento')"><strong>Alisamento</strong>Cabelos alinhados</div>
+      <div class="servico" onclick="selecionarServico(this,'Luzes')"><strong>Luzes</strong>Iluminação dos fios</div>
+      <div class="servico" onclick="selecionarServico(this,'Corte')"><strong>Corte</strong>Corte feminino</div>
+      <div class="servico" onclick="selecionarServico(this,'Escova')"><strong>Escova</strong>Finalização</div>
+      <div class="servico" onclick="selecionarServico(this,'Hidratação')"><strong>Hidratação</strong>Tratamento capilar</div>
+      <div class="servico" onclick="selecionarServico(this,'Outros serviços')"><strong>Outros</strong>Consultar valores</div>
+    </div>
+
+    <div class="card">
+      <label>Nome completo</label>
+      <input id="nome" type="text" placeholder="Digite seu nome">
+
+      <label>WhatsApp</label>
+      <input id="telefone" type="text" placeholder="Seu WhatsApp com DDD">
+
+      <label>Serviço escolhido</label>
+      <input id="servico" type="text" readonly placeholder="Escolha acima">
+
+      <label>Data desejada</label>
+      <input id="data" type="date">
+
+      <label>Horário desejado</label>
+      <select id="horario">
+        <option value="">Selecione</option>
+        <option>08:00</option><option>09:00</option><option>10:00</option>
+        <option>11:00</option><option>13:00</option><option>14:00</option>
+        <option>15:00</option><option>16:00</option><option>17:00</option>
+        <option>18:00</option>
+      </select>
+
+      <label>Observações</label>
+      <textarea id="obs" placeholder="Ex: cabelo grande, retoque de raiz, dúvidas..."></textarea>
+
+      <button class="btn" onclick="validar()">Continuar</button>
+      <button class="btn btn2" onclick="irPagina(1)">Voltar</button>
+    </div>
+  </div>
+</section>
+
+<section id="pagina3" class="pagina">
+  <div class="container">
+
+    <div class="progresso">
+      <div class="bola on">1</div>
+      <div class="bola on">2</div>
+      <div class="bola on">3</div>
+    </div>
+
+    <div class="check">✓</div>
+
+    <h2>Solicitação pronta!</h2>
+    <p class="sub">Agora clique no botão abaixo para enviar sua solicitação pelo WhatsApp.</p>
+
+    <div class="card">
+      <p class="sub">Verificaremos a disponibilidade do horário e responderemos confirmando seu agendamento.</p>
+      <button class="btn" onclick="enviarWhatsApp()">Enviar no WhatsApp</button>
+      <button class="btn btn2" onclick="irPagina(2)">Editar dados</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Grazi Tenório Studio<br>
+  Agenda Digital Premium
+</footer>
+
+<script>
+function irPagina(n){
+  document.querySelectorAll(".pagina").forEach(p=>p.classList.remove("ativa"));
+  document.getElementById("pagina"+n).classList.add("ativa");
+  window.scrollTo(0,0);
+}
+
+function selecionarServico(card, servico){
+  document.querySelectorAll(".servico").forEach(c=>c.classList.remove("ativo"));
+  card.classList.add("ativo");
+  document.getElementById("servico").value = servico;
+}
+
+function validar(){
+  const nome = document.getElementById("nome").value;
+  const telefone = document.getElementById("telefone").value;
+  const servico = document.getElementById("servico").value;
+  const data = document.getElementById("data").value;
+  const horario = document.getElementById("horario").value;
+
+  if(!nome || !telefone || !servico || !data || !horario){
+    alert("Preencha nome, WhatsApp, serviço, data e horário.");
+    return;
+  }
+
+  irPagina(3);
+}
+
+function enviarWhatsApp(){
+  const nome = document.getElementById("nome").value;
+  const telefone = document.getElementById("telefone").value;
+  const servico = document.getElementById("servico").value;
+  const data = document.getElementById("data").value;
+  const horario = document.getElementById("horario").value;
+  const obs = document.getElementById("obs").value;
+
+  const numeroWhatsApp = "5511951136640";
+
+  const mensagem =
+  `Olá, quero solicitar um agendamento:%0A%0A`+
+  `Nome: ${nome}%0A`+
+  `WhatsApp: ${telefone}%0A`+
+  `Serviço: ${servico}%0A`+
+  `Data desejada: ${data}%0A`+
+  `Horário desejado: ${horario}%0A`+
+  `Observações: ${obs}%0A%0A`+
+  `Aguardo confirmação da disponibilidade.`;
+
+  window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`, "_blank");
+}
+</script>
+
+</body>
+</html>
